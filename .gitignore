@@ -1,0 +1,25 @@
+.project
+.classpath
+new 1.txt
+.settings/org.springframework.ide.eclipse.xml.namespaces.prefs
+.settings/org.eclipse.m2e.core.prefs
+.settings/org.eclipse.jdt.core.prefs
+.settings/org.eclipse.jdt.apt.core.prefs
+.settings/org.eclipse.core.resources.prefs
+backend/.factorypath
+backend/.settings/org.eclipse.m2e.core.prefs
+backend/.settings/org.eclipse.jdt.core.prefs
+backend/.settings/org.eclipse.jdt.apt.core.prefs
+backend/.settings/org.eclipse.core.resources.prefs
+backend/.mvn/wrapper/maven-wrapper.properties
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/.mvn/wrapper/MavenWrapperDownloader.java
+backend/target/
+frontend/src/main/frontend/node/
+frontend/package-lock.json
+frontend/src/main/frontend/.editorconfig
+backend/src/main/resources/META-INF/persistence.xml
+backend/src/main/resources/application.properties
+frontend/src/main/frontend/src/assets/.gitkeep
+frontend/target/frontend-0.0.1-SNAPSHOT.jar
+frontend/target/maven-archiver/pom.properties

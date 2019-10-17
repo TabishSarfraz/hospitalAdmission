@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    
+  }
+  html, body {
+    height: 100vh;
+
+    min-height: 300px!important;
+  }
+  .page-wrap {
+    min-height: 100vh;
+    position: relative;
+    min-height: 100vh!important;
+    /* equal to footer height */
+    margin-bottom: -172px; 
+  }
+  .page-wrap:after {
+    content: "";
+    display: block;
+  }
+  .site-footer {
+    height: 172px; 
+    position: relative;
+  }
+  .site-footer {
+    background: orange;
+  }
+
+  html.page-wrap:after {
+    background:#343a40;
+
+  }
