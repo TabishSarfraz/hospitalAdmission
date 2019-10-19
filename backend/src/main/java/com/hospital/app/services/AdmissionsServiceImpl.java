@@ -2,10 +2,13 @@ package com.hospital.app.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hospital.app.domain.Admissions;
+import com.hospital.app.domain.Patient;
 import com.hospital.app.repositories.IAdmissionRepository;
 import com.hospital.app.repositories.ICateogoryRepository;
 import com.hospital.app.repositories.IPatientRepository;
@@ -32,35 +35,85 @@ public class AdmissionsServiceImpl implements IAdmissionsService {
 		return admissionsList;
 
 	}
-
+	
 	@Override
-	public void createAdmission() {
+	public Admissions getAdmissionsItem(Integer id) {
 		
+		Admissions admission = admissionsRepo.findById(id);
+		
+		return admission;
 
 	}
 
 	@Override
-	public void createExternalAdmission() {
+	public boolean createAdmission(Admissions admission) {
 		
-
+		Patient patient = admission.getPatientID();
+		
+		Patient patientOld = findSinglePatient(patient);
+		
+		if(patientOld!= null && patientOld.getFirstName() != null && patientOld.getId() != null  ) {
+			
+			admission.setPatientID(patientOld);
+			
+			admissionsRepo.save(admission);
+			
+		}else {
+			
+			patient = patientRepo.save(patient);
+			
+			patient = findSinglePatient(patient);
+			
+			admission.setPatientID(patient);
+			
+			admissionsRepo.save(admission);
+			
+		}
+		
+		return true;
+		
 	}
+
 
 	@Override
-	public void updateAdmission() {
+	public boolean updateAdmission(Admissions admission) {
 		
+		Patient patient = admission.getPatientID();
+		
+		Patient patientOld = findSinglePatient(patient);
+		
+		patientOld.setGender(patient.getGender());
+		
+		patient = patientRepo.save(patientOld);
+		
+		admission.setPatientID(patient);
+		
+		admissionsRepo.save(admission);
+			
+		return true;
 
 	}
+
+
 
 	@Override
-	public void getAdmissionsItem() {
+	@Transactional
+	public boolean deleteAdmission(Integer id) {
 		
-
-	}
-
-	@Override
-	public void deleteAdmission() {
+		admissionsRepo.deleteById(id);
 		
-
+		return true;
+		
 	}
-
+	
+	private Patient findSinglePatient(Patient patient) {
+		
+		return patientRepo.findByFirstNameAndLastNameAndDateBirth(
+				patient.getFirstName(), 
+				patient.getLastName(),
+				patient.getDateBirth()
+				);
+		
+	}
+	
 }

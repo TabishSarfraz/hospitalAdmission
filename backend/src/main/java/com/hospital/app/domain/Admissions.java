@@ -22,6 +22,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
 /**
  *
  * @author Tabish Sarfraz
@@ -49,6 +50,9 @@ public class Admissions implements Serializable {
     @JoinColumn(name = "patientID", referencedColumnName = "id")
     @ManyToOne
     private Patient patientID;
+    
+    @Column(name = "externalID")
+    private String externalID;
 
     public Admissions() {
     }
@@ -89,7 +93,15 @@ public class Admissions implements Serializable {
         this.patientID = patientID;
     }
 
-    @Override
+    public String getExternalID() {
+		return externalID;
+	}
+
+	public void setExternalID(String externalID) {
+		this.externalID = externalID;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

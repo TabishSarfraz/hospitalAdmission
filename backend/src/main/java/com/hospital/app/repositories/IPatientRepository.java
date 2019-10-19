@@ -16,7 +16,6 @@ public interface IPatientRepository extends CrudRepository<Patient, Long> {
 	
 	List<Patient> findById(Integer id);
 	
-	List<Patient> findByFirstNameAndLastNameAndDateBirth(String firstName, String lastName, Date dateBirth);
+	Patient findByFirstNameAndLastNameAndDateBirth(String firstName, String lastName, Date dateBirth);
 	
-
 }

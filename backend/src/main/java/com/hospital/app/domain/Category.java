@@ -21,6 +21,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+
 /**
  *
  * @author Tabish Sarfraz
@@ -41,9 +42,6 @@ public class Category implements Serializable {
     @Column(name = "name")
     private String name;
     
-    @OneToMany(mappedBy = "categoryID")
-    private Collection<Admissions> admissionsCollection;
-
     public Category() {
     }
 
@@ -65,15 +63,6 @@ public class Category implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @XmlTransient
-    public Collection<Admissions> getAdmissionsCollection() {
-        return admissionsCollection;
-    }
-
-    public void setAdmissionsCollection(Collection<Admissions> admissionsCollection) {
-        this.admissionsCollection = admissionsCollection;
     }
 
     @Override

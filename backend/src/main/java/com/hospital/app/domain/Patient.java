@@ -21,8 +21,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -56,9 +54,7 @@ public class Patient implements Serializable {
     @Column(name = "gender")
     private String gender;
     
-    @OneToMany(mappedBy = "patientID")
-    private Collection<Admissions> admissionsCollection;
-
+ 
     public Patient() {
     }
 
@@ -106,14 +102,6 @@ public class Patient implements Serializable {
         this.gender = gender;
     }
 
-    @XmlTransient
-    public Collection<Admissions> getAdmissionsCollection() {
-        return admissionsCollection;
-    }
-
-    public void setAdmissionsCollection(Collection<Admissions> admissionsCollection) {
-        this.admissionsCollection = admissionsCollection;
-    }
 
     @Override
     public int hashCode() {

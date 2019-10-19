@@ -9,6 +9,8 @@ import com.hospital.app.domain.Admissions;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -20,10 +22,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IAdmissionRepository extends CrudRepository<Admissions, Long>{
     
-	
 	List<Admissions> findAll();
 	
 	Admissions findById(Integer id);
 	
-    
+	Admissions deleteById(Integer id);
+
 }

@@ -53,18 +53,28 @@
             <artifactId>frontend</artifactId>
             <version>${project.version}</version>
             <scope>runtime</scope>
-        </dependency>
-	 <dependency>
-	  <groupId>org.eclipse.persistence</groupId>
-	  <artifactId>eclipselink</artifactId>
-	  <version>2.5.2</version>
-	 </dependency>
-	 <dependency>
-	  <groupId>org.eclipse.persistence</groupId>
-	  <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-	  <version>2.5.2</version>
-	  <scope>provided</scope>
-	 </dependency>
+       	</dependency>
+		<dependency>
+			  <groupId>org.eclipse.persistence</groupId>
+			  <artifactId>eclipselink</artifactId>
+			  <version>2.5.2</version>
+		</dependency>
+		<dependency>
+			  <groupId>org.eclipse.persistence</groupId>
+			  <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+			  <version>2.5.2</version>
+			  <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.modelmapper</groupId>
+		    <artifactId>modelmapper</artifactId>
+		    <version>2.3.2</version>
+		</dependency>
+	    <dependency>
+	        <groupId>com.fasterxml.jackson.core</groupId>
+	        <artifactId>jackson-databind</artifactId>
+    	</dependency>
+
 	</dependencies>
 
 	<build>
