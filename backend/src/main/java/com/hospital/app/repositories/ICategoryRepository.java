@@ -8,10 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.hospital.app.domain.Category;
 
 @Repository
-public interface ICateogoryRepository extends CrudRepository<Category, Long> {
+public interface ICategoryRepository extends CrudRepository<Category, Long> {
 
 	List<Category> findAll();
 	
 	Category findById(Integer id);
+	
+	Category findByName(String name);
 	
 }

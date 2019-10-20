@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hospital.app.domain.Admissions;
+import com.hospital.app.domain.Category;
 import com.hospital.app.domain.Patient;
 import com.hospital.app.repositories.IAdmissionRepository;
-import com.hospital.app.repositories.ICateogoryRepository;
+import com.hospital.app.repositories.ICategoryRepository;
 import com.hospital.app.repositories.IPatientRepository;
+import java.util.Date;
 
 @Service
 public class AdmissionsServiceImpl implements IAdmissionsService {
@@ -21,7 +23,7 @@ public class AdmissionsServiceImpl implements IAdmissionsService {
 	private IAdmissionRepository admissionsRepo;
 	
 	@Autowired
-	private ICateogoryRepository categoryRepo;
+	private ICategoryRepository categoryRepo;
 	
 	@Autowired
 	private IPatientRepository patientRepo;
@@ -52,21 +54,37 @@ public class AdmissionsServiceImpl implements IAdmissionsService {
 		
 		Patient patientOld = findSinglePatient(patient);
 		
-		if(patientOld!= null && patientOld.getFirstName() != null && patientOld.getId() != null  ) {
+		Category category = categoryRepo.findByName(admission.getCategoryID().getName());
+		
+		if(patientOld!= null && patientOld.getFirstName() != null && patientOld.getId() != null 
+			&& category != null & category.getName() != null & category.getId()!= null) {
 			
+			patientOld.setGender(patient.getGender());
 			admission.setPatientID(patientOld);
-			
+			admission.setCategoryID(category);
+			admission.setDateAdmission(new Date());
+                        
 			admissionsRepo.save(admission);
 			
 		}else {
+			
+			if(category == null) {
+			
+				return false;
+				
+			}else {
 			
 			patient = patientRepo.save(patient);
 			
 			patient = findSinglePatient(patient);
 			
 			admission.setPatientID(patient);
-			
+            admission.setCategoryID(category);
+            admission.setDateAdmission(new Date());
+
 			admissionsRepo.save(admission);
+			
+			}
 			
 		}
 		
@@ -94,8 +112,6 @@ public class AdmissionsServiceImpl implements IAdmissionsService {
 
 	}
 
-
-
 	@Override
 	@Transactional
 	public boolean deleteAdmission(Integer id) {
@@ -105,6 +121,16 @@ public class AdmissionsServiceImpl implements IAdmissionsService {
 		return true;
 		
 	}
+	
+	@Override
+	public List<Category> getAdmissionsCategories() {
+		
+		List<Category> categoryList = categoryRepo.findAll();
+		
+		return categoryList;
+
+	}
+	
 	
 	private Patient findSinglePatient(Patient patient) {
 		

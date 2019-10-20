@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     
   }
@@ -11,7 +11,7 @@
     min-height: 100vh;
     position: relative;
     min-height: 100vh!important;
-    /* equal to footer height */
+
     margin-bottom: -172px; 
   }
   .page-wrap:after {
@@ -29,4 +29,15 @@
   html.page-wrap:after {
     background:#343a40;
 
+  } */
+
+
+  .Site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+  .Site-content {
+    flex: 1;
   }

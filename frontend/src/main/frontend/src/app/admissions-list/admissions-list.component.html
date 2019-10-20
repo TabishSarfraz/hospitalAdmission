@@ -15,44 +15,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>10 Oct</td>
-                <td>John Smith</td>
-                <td>9 Oct</td>
-                <td>Edit | Delete</td>
-
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>10 Oct</td>
-                <td>John Smith</td>
-                <td>9 Oct</td>
-                <td>Edit | Delete</td>
-
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>1 Jan</td>
-                <td>Donald Attard</td>
-                <td>9 Oct</td>
-                <td>Edit | Delete</td>
-
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>5 March</td>
-                <td>Joe Baini</td>
-                <td>9 Oct</td>
-                <td>Edit | Delete</td>
-
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>6 Feb</td>
-                <td>Joanna Jackson</td>
-                <td>9 Oct</td>
-                <td>Edit | Delete</td>
+            <tr *ngFor="let admissionItem of admissionsList " >
+                <td>{{admissionItem.id}}</td>
+                <td>{{admissionItem.dateAdmission | date:'short'}}</td>
+                <td>{{admissionItem.patient.firstName}} {{admissionItem.patient.lastName}}</td>
+                <td>{{admissionItem.patient.dateBirth}}</td>
+                <td style="width:15%"><button (click)="editAdmission(admissionItem.id)"
+                     class="btn btn-info">Edit</button> 
+                    <button 
+                        (click)="setDynamicValue(admissionItem);getDynamicValue()"
+                        data-toggle="modal" data-target="#deleteModal"
+                        class="btn btn-danger ml-2">Delete</button>
+                </td>
 
             </tr>
         </tbody>
@@ -61,3 +35,25 @@
     </div>
 
 </div>
+
+
+<div class="modal" id="deleteModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Delete Admission</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body"  >
+              <p>Do you want to continue deleting admission record?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="deleteSelectedAdmission()"  data-dismiss="modal">Yes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
