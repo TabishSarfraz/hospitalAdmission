@@ -8,11 +8,11 @@ import { Category } from '../shared/model/category';
 import { Patient } from '../shared/model/patient';
 
 @Component({
-  selector: 'app-admissions-create',
-  templateUrl: './admissions-create.component.html',
-  styleUrls: ['./admissions-create.component.css']
+  selector: 'app-admissions-update',
+  templateUrl: './admissions-update.component.html',
+  styleUrls: ['./admissions-update.component.css']
 })
-export class AdmissionsCreateComponent implements OnInit {
+export class AdmissionsUpdateComponent implements OnInit {
 
   categoryForm: FormGroup;
   paramSub: Subscription;
@@ -26,6 +26,8 @@ export class AdmissionsCreateComponent implements OnInit {
 
   categorySelected: Category = new Category();
   patientCreated: Patient = new Patient();
+
+  disableCat: boolean = false;
 
   constructor(private _formBuilder: FormBuilder,
     private _route: ActivatedRoute,
@@ -47,7 +49,10 @@ export class AdmissionsCreateComponent implements OnInit {
 
     this.paramSub = this._route.params.subscribe(
       params => {
-
+          if(params.id){
+              this.admission.id = params.id;
+              this.getAdmission(this.admission.id);
+          }
       }
     )
 
@@ -55,7 +60,6 @@ export class AdmissionsCreateComponent implements OnInit {
       data =>{
 
       this.categoryList = data;
-
 
     }, error => {
       console.log(error)
@@ -75,9 +79,9 @@ export class AdmissionsCreateComponent implements OnInit {
       this.patientCreated.dateBirth = this.categoryForm.value.birthDate;
 
       this.categorySelected.id = null;
-      this.admission.id = null;
-      this.admission.dateAdmission = null;
-      this.admission.externalID = null;
+      this.admission.id = this.admission.id;
+      this.admission.dateAdmission = this.admission.dateAdmission;
+      this.admission.externalID = this.admission.externalID;
 
       this.admission.category = this.categorySelected;
       this.admission.patient = this.patientCreated;
@@ -85,7 +89,7 @@ export class AdmissionsCreateComponent implements OnInit {
       console.log('form submission');
       console.log(this.admission);
 
-      this.admissionListService.createAdmission(this.admission).subscribe(
+      this.admissionListService.updateAdmission(this.admission).subscribe(
         data =>{
 
           this.error = false;
@@ -122,6 +126,31 @@ export class AdmissionsCreateComponent implements OnInit {
     }
 
   }
+
+
+  getAdmission(id: number){
+
+    this.admissionListService.getAdmissionItem(id).subscribe(
+      data => {
+        console.log("get"+ id);
+        this.admission = data;
+        console.log(this.admission);
+
+        this.categoryForm.controls.genderForm.patchValue(this.admission.patient.gender);
+        this.categoryForm.controls.firstName.patchValue(this.admission.patient.firstName);
+        this.categoryForm.controls.lastName.patchValue(this.admission.patient.lastName);
+        this.categoryForm.controls.birthDate.patchValue(this.admission.patient.dateBirth);
+        this.categoryForm.controls.catForm.patchValue(this.admission.category.name);
+
+        this.categoryForm.updateValueAndValidity();
+
+      }, error => {
+        console.log(error);
+      }
+    )
+
+  }
+
 
 
 }

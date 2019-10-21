@@ -19,7 +19,6 @@ frontend/src/main/frontend/node/
 frontend/package-lock.json
 frontend/src/main/frontend/.editorconfig
 backend/src/main/resources/META-INF/persistence.xml
-backend/src/main/resources/application.properties
 frontend/src/main/frontend/src/assets/.gitkeep
 frontend/target/frontend-0.0.1-SNAPSHOT.jar
 frontend/target/maven-archiver/pom.properties

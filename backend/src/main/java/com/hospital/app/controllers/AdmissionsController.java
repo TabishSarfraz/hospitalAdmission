@@ -31,7 +31,8 @@ import com.hospital.app.dto.AdmissionsDTO;
 import com.hospital.app.dto.CategoryDTO;
 import com.hospital.app.services.IAdmissionsService;
 
-@RestController @CrossOrigin
+@RestController 
+@CrossOrigin
 @RequestMapping("/api/admissions")
 public class AdmissionsController {
 	

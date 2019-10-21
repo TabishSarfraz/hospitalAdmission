@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { from } from 'rxjs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdmissionsCreateModule } from './admissions-create/admissions-create.module';
+import { AdmissionsUpdateModule } from './admissions-update/admissions-update.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AdmissionsCreateModule } from './admissions-create/admissions-create.mo
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AdmissionsCreateModule
+    AdmissionsCreateModule,
+    AdmissionsUpdateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -18,6 +18,11 @@ const routes: Routes = [
     loadChildren: "../app/admissions-create/admissions-create.module#AdmissionsCreateModule"
   },
 
+  {
+    path: "update",
+    loadChildren: "../app/admissions-update/admissions-update.module#AdmissionsUpdateModule"
+  },
+
 
 ];
 

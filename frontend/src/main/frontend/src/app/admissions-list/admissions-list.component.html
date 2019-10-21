@@ -11,6 +11,8 @@
                 <th>Admission Date</th>
                 <th>Patient Name</th>
                 <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Category</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,8 +22,10 @@
                 <td>{{admissionItem.dateAdmission | date:'short'}}</td>
                 <td>{{admissionItem.patient.firstName}} {{admissionItem.patient.lastName}}</td>
                 <td>{{admissionItem.patient.dateBirth}}</td>
-                <td style="width:15%"><button (click)="editAdmission(admissionItem.id)"
-                     class="btn btn-info">Edit</button> 
+                <td>{{admissionItem.patient.gender}}</td>
+                <td>{{admissionItem.category.name}}</td>
+                <td style="width:15%"><a [routerLink]="['/update',{ id: admissionItem.id}]"><button (click)="editAdmission(admissionItem.id)"
+                     class="btn btn-info">Edit</button></a>
                     <button 
                         (click)="setDynamicValue(admissionItem);getDynamicValue()"
                         data-toggle="modal" data-target="#deleteModal"

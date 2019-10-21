@@ -38,5 +38,17 @@ export class AdmissionsListService {
 
   }
 
+  getAdmissionItem(id):Observable<any>{
+
+    return this.httpClient.get(this.baseUrl + "/getAdmissionItem?id="+id);
+
+  }
+
+  updateAdmission(admission: Admissions):Observable<any>{
+
+    return this.httpClient.put(this.baseUrl + '/updateAdmission', admission);
+
+  }
+
 
 }

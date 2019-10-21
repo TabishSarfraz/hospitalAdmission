@@ -100,11 +100,14 @@ public class AdmissionsServiceImpl implements IAdmissionsService {
 		
 		Patient patientOld = findSinglePatient(patient);
 		
+		Category category = categoryRepo.findByName(admission.getCategoryID().getName());
+
 		patientOld.setGender(patient.getGender());
 		
 		patient = patientRepo.save(patientOld);
 		
 		admission.setPatientID(patient);
+        admission.setCategoryID(category);
 		
 		admissionsRepo.save(admission);
 			
