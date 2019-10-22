@@ -85,6 +85,8 @@ export class AdmissionsCreateComponent implements OnInit {
       console.log('form submission');
       console.log(this.admission);
 
+      this.error = false;
+
       this.admissionListService.createAdmission(this.admission).subscribe(
         data =>{
 

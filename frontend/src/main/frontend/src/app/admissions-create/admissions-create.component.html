@@ -19,12 +19,12 @@
 
         <div class="form-group">
             <label for="name">Date of Birth</label>
-            <input (blur)="validateDateCheck()" onkeydown="return false" max="{{currentDate |date:'yyyy-MM-dd'}}" type="date" class=" date-input form-control" id="birthDate" formControlName="birthDate" required/> 
+            <input (blur)="validateDateCheck()" max="{{currentDate |date:'yyyy-MM-dd'}}" type="date" class=" date-input form-control" id="birthDate" formControlName="birthDate" required/> 
             <small [hidden]="categoryForm.controls.birthDate.valid" class="text-danger">
                     Date of Birth is required
             </small>
             <small [hidden]="!errorDate" class="text-danger">
-                    Date of Birth cannot be set in future from current date;
+                    Date of Birth cannot be set in future from current date
             </small>
         </div>
 
@@ -60,7 +60,15 @@
     </form>
 
     <div [hidden]="!submitted">
-        <p>Admission has been created</p>
+
+        <div *ngIf="error == false">
+            <p>Admission has been created</p>
+        </div>
+        <div class="text-danger" *ngIf="error == true">
+                <p >Error:</p>
+                <p>Admission could not be created</p>
+            </div>
+    
 
         <button type="button" class="btn btn-info" (click)="returnHome()"> Return to Admissions List</button>
 

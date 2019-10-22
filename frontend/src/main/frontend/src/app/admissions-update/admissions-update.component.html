@@ -1,6 +1,6 @@
 <h3>Update Admission</h3>
 <div class="container">
-    <form [hidden]="submitted" [formGroup]="categoryForm" (ngSubmit)="formSubmission()" *ngIf="this.admission.patient.id">
+    <form [hidden]="submitted" [formGroup]="categoryForm" (ngSubmit)="formSubmission()" *ngIf="this.admission.id">
 
 
 
@@ -11,7 +11,7 @@
 
         <div class="form-group">
                 <label for="name">First Name</label>
-                <input type="text" value="{{admission.patient.firstName}}" class="form-control" id="firstName" formControlName="firstName"  required/> 
+                <input type="text" value="{{admission.patient?.firstName}}" class="form-control" id="firstName" formControlName="firstName"  required/> 
                 <small [hidden]="categoryForm.controls.firstName.valid" class="text-danger">
                         First Name is required
                 </small>
@@ -19,7 +19,7 @@
 
         <div class="form-group">
             <label for="name">Last Name</label>
-            <input type="text" value="{{admission.patient.lastName}}" class="form-control" id="lastName" formControlName="lastName" required/> 
+            <input type="text" value="{{admission.patient?.lastName}}" class="form-control" id="lastName" formControlName="lastName" required/> 
             <small [hidden]="categoryForm.controls.lastName.valid" class="text-danger">
                     Last Name is required
             </small>
@@ -27,23 +27,23 @@
 
         <div class="form-group">
             <label for="name">Date of Birth</label>
-            <input value="{{admission.patient.dateBirth}}" (blur)="validateDateCheck()" onkeydown="return false" max="{{currentDate |date:'yyyy-MM-dd'}}" type="date" class=" date-input form-control" id="birthDate" formControlName="birthDate" required/> 
+            <input value="{{admission.patient?.dateBirth}}" (blur)="validateDateCheck()" max="{{currentDate |date:'yyyy-MM-dd'}}" type="date" class=" date-input form-control" id="birthDate" formControlName="birthDate" required/> 
             <small [hidden]="categoryForm.controls.birthDate.valid" class="text-danger">
                     Date of Birth is required
             </small>
             <small [hidden]="!errorDate" class="text-danger">
-                    Date of Birth cannot be set in future from current date;
+                    Date of Birth cannot be set in future from current date
             </small>
         </div>
 
         <div class="form-group">
                 <label for="name">Gender</label>
                 <select formControlName="genderForm" id="genderForm" class="form-control" > 
-                    <option [selected]="admission.patient.gender ==  ''" value="">-- Please Select --</option>
-                    <option [selected]="admission.patient.gender == 'Male'" value="Male">Male</option>
-                    <option [selected]="admission.patient.gender == 'Female'" value="Female">Female</option>
-                    <option [selected]="admission.patient.gender == 'Intersex'" value="Intersex">Intersex</option>
-                    <option [selected]="admission.patient.gender == 'Unknown'" value="Unknown">Unknown</option>
+                    <option [selected]="admission.patient?.gender ==  ''" value="">-- Please Select --</option>
+                    <option [selected]="admission.patient?.gender == 'Male'" value="Male">Male</option>
+                    <option [selected]="admission.patient?.gender == 'Female'" value="Female">Female</option>
+                    <option [selected]="admission.patient?.gender == 'Intersex'" value="Intersex">Intersex</option>
+                    <option [selected]="admission.patient?.gender == 'Unknown'" value="Unknown">Unknown</option>
                 </select>
                 <small [hidden]="categoryForm.controls.genderForm.valid" class="text-danger">
                         Gender is required
@@ -53,7 +53,7 @@
         <div class="form-group" >
             <label for="name">Category</label>
             <select formControlName="catForm" id="catForm" class="form-control" [attr.disabled]="admission.externalID" >
-                <option  [selected]="admission.category.id == category.id" *ngFor="let category of categoryList" [ngValue]="category.name">{{category.name}}</option>
+                <option  [selected]="admission.category?.id == category.id" *ngFor="let category of categoryList" [ngValue]="category.name">{{category.name}}</option>
             </select>
             <small [hidden]="categoryForm.controls.catForm.valid" class="text-danger">
                     Category is required
@@ -72,7 +72,17 @@
     </form>
 
     <div *ngIf="submitted == true">
-        <p>Admission has been updated</p>
+
+        <div class="text-danger" *ngIf="error == true">
+            <p >Error:</p>
+            <p>Admission could not be updated</p>
+        </div>
+
+        <div *ngIf="error == false">
+            <p>Admission has been updated</p>
+        </div>
+
+
 
         <button type="button" class="btn btn-info" (click)="returnHome()"> Return to Admissions List</button>
 

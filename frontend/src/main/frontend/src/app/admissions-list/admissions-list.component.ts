@@ -63,6 +63,12 @@ export class AdmissionsListComponent implements OnInit {
 
   }
 
+  setDynamicValue(admissionItem: Admissions){
+
+    this.admissionItemSelected = admissionItem;
+
+  }
+
 
 
 

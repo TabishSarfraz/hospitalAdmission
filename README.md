@@ -55,6 +55,15 @@ If you do not have maven please download it from
 https://maven.apache.org/download.cgi
 ```
 
+
+### Database connection setup
+Change the username and password to your local database account inside the application.properties file. 
+
+It is located inside the main directory at
+```
+workspace\hospitalAdmissionGIT\backend\src\main\resources
+```
+
 ## Build
 To build the project, please navigate to the project root directory in command line and run the following command
 ```sh 
