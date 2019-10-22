@@ -1,1 +1,1 @@
-web: java -jar backend\target\backend-0.0.1-SNAPSHOT.jar -p 8080
+web: java -jar backend/target/backend-0.0.1-SNAPSHOT.jar --server.port=8080
