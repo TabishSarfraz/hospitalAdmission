@@ -16,16 +16,6 @@ The purpose of this app is to store admissions into a hospital for patients.
 
 Basically a CRUD application practice using RESTApi's to communicate with frontend and backend
 
-Utlising programming languages and technologies:
-
-- Angular 8 
-- Java 8 
-- Spring Boot (Framework)
-- Spring JPA (Hibernate)
-- MYSQL 
-
-
-
 
 
 ## Technologies
@@ -33,8 +23,8 @@ The application has been built using the following technologies:
 
 - Angular 8   
 - Java 8    
-- Spring Boot
-- Spring JPA
+- Spring Boot - (Framework)
+- Spring JPA -(Hibernate)
 - Maven     - Dependency Management    
 
 
@@ -74,20 +64,14 @@ mvn clean install
 The project can be run using .jar file or using maven command
 
 ### Running with .jar file
-A .jar file is created under the 'target' folder inside the project root directory.
+A .jar file is created under the 'backend\target' folder inside the project root directory.
 
 Use this command if your in the project root directory
 ```sh
-java -jar target\.jar
+java -jar backend\target\backend-0.0.1-SNAPSHOT.jar
 ```
-Otherwise, navigate to the 'target' folder inside the project root directory and run
+Otherwise, navigate to the 'backend\target' folder inside the project root directory and run
 ```sh
-java -jar .jar
-```
-
-### Running using maven command
-To run the project using maven command, go to the project root directory and run
-```sh
-mvn exec:java
+java -jar backend-0.0.1-SNAPSHOT.jar
 ```
 
