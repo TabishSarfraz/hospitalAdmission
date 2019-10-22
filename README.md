@@ -75,3 +75,8 @@ Otherwise, navigate to the 'backend\target' folder inside the project root direc
 java -jar backend-0.0.1-SNAPSHOT.jar
 ```
 
+### curl command External Admission 
+To create external Admission run curl command as follows
+```
+curl -i -X POST -H "Content-Type: application/json" -d "{\"id\":null,\"dateAdmission\":null,\"category\":{\"id\": null,\"name\":\"Normal\"},\"patient\":{\"id\":null,\"firstName\":\"JohnasonTester1\",\"lastName\":\"Dean\",\"dateBirth\":\"2015-01-01\",\"gender\":\"Male\"},\"externalID\":\"HospitalEpworth\"}" http://localhost:8080/api/admissions/createExternalAdmission  
+```
